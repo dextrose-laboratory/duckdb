@@ -194,7 +194,7 @@ jobs:
   linux-step-1:
     # Builds binaries for linux
     name: Linux Release
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     strategy:
       matrix:
         version: [ 'v1.0.0', 'v1.1.3', 'v1.2.2',  'v1.3.2', 'v1.4-andium', 'main' ]
@@ -248,7 +248,7 @@ jobs:
   linux-step-2:
     # Builds binaries for linux
     name: Linux Release Test
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs:
       - osx-step-1
       - linux-step-1

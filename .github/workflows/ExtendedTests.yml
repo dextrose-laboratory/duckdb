@@ -185,7 +185,7 @@ jobs:
 
   regression-clang-benchmark-runner:
      name: Benchmark runner clang vs gcc
-     runs-on: ubuntu-latest
+     runs-on: blacksmith-4vcpu-ubuntu-2404
      env:
        CC: gcc
        CXX: g++
@@ -270,7 +270,7 @@ jobs:
 
   regression-flto-gcc-benchmark-runner:
      name: Benchmark runner gcc flto vs gcc
-     runs-on: ubuntu-latest
+     runs-on: blacksmith-4vcpu-ubuntu-2404
      env:
        CC: gcc
        CXX: g++

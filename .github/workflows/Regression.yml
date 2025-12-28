@@ -55,7 +55,7 @@ jobs:
   check-draft:
     # We run all other jobs on PRs only if they are not draft PR
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Preliminary checks on CI 
         run: echo "Event name is ${{ github.event_name }}"
@@ -63,7 +63,7 @@ jobs:
   regression-test-benchmark-runner:
     name: Regression Tests
     needs: check-draft
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     env:
       CC: gcc-10
       CXX: g++-10
@@ -201,7 +201,7 @@ jobs:
   regression-test-storage:
     name: Storage Size Regression Test
     needs: check-draft
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     env:
       CC: gcc-10
       CXX: g++-10
@@ -282,7 +282,7 @@ jobs:
   regression-test-binary-size:
     name: Regression test binary size
     needs: check-draft
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     env:
       CC: gcc-10
       CXX: g++-10
@@ -325,7 +325,7 @@ jobs:
   regression-test-plan-cost:
     name: Regression Test Join Order Plan Cost
     needs: check-draft
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     env:
       CC: gcc-10
       CXX: g++-10

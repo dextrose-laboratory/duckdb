@@ -41,7 +41,7 @@ jobs:
   check-draft:
     # We run all other jobs on PRs only if they are not draft PR
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Preliminary checks on CI 
         run: echo "Event name is ${{ github.event_name }}"

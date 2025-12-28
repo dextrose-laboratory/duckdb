@@ -92,7 +92,7 @@ jobs:
   check-draft:
     # We run all other jobs on PRs only if they are not draft PR
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Preliminary checks on CI
         run: echo "Event name is ${{ github.event_name }}"
@@ -100,7 +100,7 @@ jobs:
   # This first step loads the various extension configs from the ~/.github/config directory storing them to drive the build jobs
   load-extension-configs:
     name: Load Extension Configs
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs: check-draft
     outputs:
       main_extensions_config: ${{ steps.set-main-extensions.outputs.extension_config }}
@@ -218,7 +218,7 @@ jobs:
   # Merge all extensions into a single, versioned repository
   create-extension-repository:
     name: Create Extension Repository
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs:
       - main-extensions
       - rust-based-extensions
@@ -267,7 +267,7 @@ jobs:
 
   upload-extensions:
     name: Upload Extensions
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs:
         - create-extension-repository
 
@@ -304,7 +304,7 @@ jobs:
   autoload-tests:
     name: Extension Autoloading Tests
     if: ${{ !inputs.skip_tests}}
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs: create-extension-repository
 
     steps:
@@ -355,7 +355,7 @@ jobs:
   check-load-install-extensions:
     name: Checks extension entries
     if: ${{ !inputs.skip_tests}}
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: create-extension-repository
     env:
       CC: gcc-10

@@ -40,7 +40,7 @@ on:
 jobs:
   load-extension-configs:
     name: Load Extension Config
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     outputs:
       extension_config: ${{ steps.set-extension.outputs.extension_config }}
       extension_exclude_archs: ${{ steps.set-extension.outputs.exclude_archs }}
@@ -83,7 +83,7 @@ jobs:
   # Merge all extensions into a single, versioned repository
   create-extension-repository:
     name: Create Extension Repository
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs:
       - build
 
@@ -122,7 +122,7 @@ jobs:
 
   upload-extensions:
     name: Upload Extensions
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs:
       - create-extension-repository
 

@@ -46,8 +46,8 @@ jobs:
         include:
           - xcode_target_flag: "x86_64"
             architecture: "amd64"
-          - xcode_target_flag: "arm64"
-            architecture: "arm64"
+          - xcode_target_flag: "blacksmith-4vcpu-ubuntu-2404-arm"
+            architecture: "blacksmith-4vcpu-ubuntu-2404-arm"
     runs-on: macos-latest
     env:
       EXTENSION_CONFIGS: '${GITHUB_WORKSPACE}/.github/config/bundled_extensions.cmake'
@@ -105,7 +105,7 @@ jobs:
 
   bundle-mingw-static-lib:
     name: Windows MingW static libs
-    runs-on: windows-latest
+    runs-on: blacksmith-4vcpu-windows-2025
     env:
       ENABLE_EXTENSION_AUTOLOADING: 1
       ENABLE_EXTENSION_AUTOINSTALL: 1
@@ -166,7 +166,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config: [ { runner: ubuntu-latest, arch: amd64, image: x86_64 }, { runner: ubuntu-24.04-arm, arch: arm64, image: aarch64 } ]
+        config: [ { runner: ubuntu-latest, arch: amd64, image: x86_64 }, { runner: blacksmith-4vcpu-ubuntu-2404-arm, arch: arm64, image: aarch64 } ]
 
     name: Linux Static Libraries (${{ matrix.config.arch }})
     runs-on: ${{ matrix.config.runner }}

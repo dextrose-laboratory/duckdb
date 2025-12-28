@@ -44,14 +44,14 @@ jobs:
   check-draft:
     # We run all other jobs on PRs only if they are not draft PR
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Preliminary checks on CI 
         run: echo "Event name is ${{ github.event_name }}"
 
   format-check:
     name: Format Check
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: check-draft
     env:
       CC: gcc-10
@@ -88,7 +88,7 @@ jobs:
   enum-check:
     name: C Enum Integrity Check
     needs: format-check
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
 
     env:
       CC: gcc-10
@@ -112,7 +112,7 @@ jobs:
 
   tidy-check:
     name: Tidy Check
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     needs: format-check
 
     env:

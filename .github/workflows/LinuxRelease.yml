@@ -57,7 +57,7 @@ jobs:
  check-draft:
     # We run all other jobs on PRs only if they are not draft PR
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: ubuntu-24.04
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Preliminary checks on CI
         run: echo "Event name is ${{ github.event_name }}"
@@ -69,7 +69,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config: [ { runner: ubuntu-latest, arch: amd64, image: x86_64}, {runner: ubuntu-24.04-arm, arch: arm64, image: aarch64}]
+        config: [ { runner: ubuntu-latest, arch: amd64, image: x86_64}, {runner: blacksmith-4vcpu-ubuntu-2404-arm, arch: arm64, image: aarch64}]
 
     name: Linux CLI (${{ matrix.config.arch }})
     runs-on: ${{ matrix.config.runner }}
@@ -155,7 +155,7 @@ jobs:
  upload-libduckdb-src:
     name: Upload libduckdb-src.zip
     needs: linux-release-cli
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
 
     steps:
     - uses: actions/checkout@v4
@@ -176,7 +176,7 @@ jobs:
 
  symbol-leakage:
     name: Symbol Leakage
-    runs-on: ubuntu-22.04
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: linux-release-cli
     if: ${{ inputs.skip_tests != 'true' }}
     env:

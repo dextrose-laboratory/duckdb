@@ -70,7 +70,7 @@ env:
 jobs:
   notify-odbc-run:
     name: Run ODBC Vendor
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     if: ${{ inputs.is-success == 'true' && inputs.override-git-describe == '' }}
     steps:
       - name: Run ODBC Vendor
@@ -82,7 +82,7 @@ jobs:
 
   notify-jdbc-run:
     name: Run JDBC Vendor
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     if: ${{ inputs.is-success == 'true' && inputs.override-git-describe == '' }}
     steps:
       - name: Run JDBC Vendor
@@ -94,7 +94,7 @@ jobs:
 
   notify-nightly-build-status:
     name: Run Nightly build status
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Run Nightly build status
         if: ${{ github.repository == 'duckdb/duckdb' }}
@@ -105,7 +105,7 @@ jobs:
 
   notify-python-nightly:
     name: Dispatch Python nightly build
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Call /dispatch
         if: ${{ github.repository == 'duckdb/duckdb' && inputs.override-git-describe == '' }}
